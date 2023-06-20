@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { Canvas } from '@react-three/fiber'
+import { OrbitControls, Center } from '@react-three/drei'
 
-function Canvas() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export const App = ({ position = [-1,0,2.5], fov = 25 }) => (
+  <Canvas 
+    eventSource={document.getElementById('root')}
+    eventPrefix='client'
+    camera={{ position, fov }}>
+    <Center>
+      <Shirt />
+    </Center>
+    <OrbitControls />
+  </Canvas>
+)
+
+function Shirt(){
+  return(
+    <mesh>
+      <boxGeometry args={[1,1,1]} />
+      <meshBasicMaterial />
+    </mesh>
+  )
 }
-
-export default Canvas;
