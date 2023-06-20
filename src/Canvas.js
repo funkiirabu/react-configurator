@@ -1,9 +1,12 @@
 import { Canvas } from '@react-three/fiber'
+import { OrbitControls, Center } from '@react-three/drei'
 
 export const App = ({ position = [-1,0,2.5], fov = 25 }) => (
-  <Canvas
-    camera={{ position, fov }}>
-    <Shirt />
+  <Canvas camera={{ position, fov }}>
+    <Center>
+      <Shirt />
+    </Center>
+    <OrbitControls />
   </Canvas>
 )
 
