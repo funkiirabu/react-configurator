@@ -16,8 +16,15 @@ body,
 
 body{
   background-color: #f0f0f0;
+  font-family: 'Inter', sans-serif;
 }
 
 canvas {
   touch-action: none;
+}
+h1 {
+  z-index: 3;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
