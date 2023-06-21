@@ -1,3 +1,18 @@
+// import { Logo } from '@pmndrs/branding'
+import { GiTv } from 'react-icons/gi'
+import { AiOutlineHighlight, AiOutlineShopping } from 'react-icons/ai'
+
 export default function Overlay() {
-    return <h1>Hello r3f</h1>
+    return <Intro />
+}
+
+function Intro(){
+    return(
+        <div className="container">
+            <header>
+                <GiTv size="3em" />
+                <AiOutlineShopping size="3em" />
+            </header>
+        </div>
+    )
 }
