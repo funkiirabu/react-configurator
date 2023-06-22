@@ -114,3 +114,4 @@ function CameraRig({ children }) {
 }
 
 useGLTF.preload('/shirt_baked_collapsed.glb')
+;['/television', 'hannya', 'kitsune', 'retro', 'writing'].forEach(useTexture.preload)
