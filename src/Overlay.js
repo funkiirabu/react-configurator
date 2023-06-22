@@ -46,9 +46,8 @@ function Intro({ config }) {
           <div className="support--content">
             <div>
               <p>
-                Visualize you're exclusive Nozomi shirt with our brand-new 3D
-                customization tool. <strong>Unleash your imagination </strong>
-                and define your own style.
+                Visualize your exclusive <strong>Nozomi</strong> shirt with our brand-new 3D
+                customization tool.
               </p>
               <button 
               style={{ background: 'black' }}
