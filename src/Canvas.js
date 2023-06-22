@@ -54,6 +54,11 @@ function Shirt(props) {
 function Backdrop() {
   const shadows = useRef()
 
+  useFrame((state, delta) =>
+    easing.dampC(shadows.current.getMesh().material.color,
+    state.selectedColor, 0.25, delta)
+  )
+
   return (
     <AccumulativeShadows
       ref={shadows}
