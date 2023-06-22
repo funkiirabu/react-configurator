@@ -3,16 +3,20 @@ import { AiOutlineHighlight, AiOutlineShopping, AiFillCamera, AiOutlineArrowLeft
 
 import { useSnapshot } from 'valtio'
 import { state } from './store'
+import { motion } from 'framer-motion'
 
 export default function Overlay() {
   const snap = useSnapshot(state)
 
   return (
     <div className="container">
-      <header>
+      <motion.header
+        initial={{ opacity: 0, y: -120 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ type: 'sping', duration: 1.8, delay: 1 }}>
         <GiTv size="3em" />
         <AiOutlineShopping size="3em" />
-      </header>
+      </motion.header>
 
       {snap.intro ? <Intro /> : <Customizer />}
     </div>
