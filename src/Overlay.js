@@ -62,14 +62,14 @@ function Intro({ config }) {
   )
 }
 
-function Customizer() {
+function Customizer({ config }) {
   const snap = useSnapshot(state)
 
   const colors = ['#ccc', '#edd02d', '#021164', '#af011d', '#015a32']
   const decals = ['television', 'hannya', 'kitsune', 'retro', 'writing']
 
   return (
-    <section key="custom">
+    <motion.section key="custom" {...config}>
       <div className="customizer">
         <div className="color-options">
           {colors.map((color) => (
@@ -120,6 +120,6 @@ function Customizer() {
           <AiOutlineArrowLeft size="1.3em" />
         </button>
       </div>
-    </section>
+    </motion.section>
   )
 }
