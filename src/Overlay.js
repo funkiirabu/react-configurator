@@ -1,24 +1,30 @@
 import { GiTv } from 'react-icons/gi'
 import { AiOutlineHighlight, AiOutlineShopping, AiFillCamera, AiOutlineArrowLeft } from 'react-icons/ai'
 
-export default function Overlay() {
-  return <Customizer />
-}
+import { useSnapshot } from 'valtio'
+import { state } from './store'
 
-function Intro() {
+export default function Overlay() {
+  const snap = useSnapshot(state)
+
   return (
     <div className="container">
       <header>
         <GiTv size="3em" />
-        <div>
-          <AiOutlineShopping size="3em" />
-        </div>
+        <AiOutlineShopping size="3em" />
       </header>
 
+      {snap.intro ? <Intro /> : <Customizer />}
+    </div>
+  )
+}
+
+function Intro() {
+  return (
       <section key="main">
         <div className="section--container">
           <div>
-            <h1>LET'S DO IT.</h1>
+            <h1>NOZ OM I.</h1>
           </div>
           <div className="support--content">
             <div>
@@ -27,14 +33,15 @@ function Intro() {
                 customization tool. <strong>Unleash your imagination </strong>
                 and define your own style.
               </p>
-              <button style={{ background: 'black' }}>
+              <button 
+              style={{ background: 'black' }}
+              onClick={() => (state.intro = false)}>
                 CUSTOMIZE IT <AiOutlineHighlight size="1.3em" />
               </button>
             </div>
           </div>
         </div>
       </section>
-    </div>
   )
 }
 
@@ -69,7 +76,9 @@ function Customizer() {
         DOWNLOAD
         <AiFillCamera size="1.3em" />
       </button>
-      <button className="exit" style={{ background: 'black' }}>
+      <button className="exit" 
+      style={{ background: 'black' }}
+        onClick={() => (state.intro = true)}>
         GO BACK
         <AiOutlineArrowLeft size="1.3em" />
       </button>
