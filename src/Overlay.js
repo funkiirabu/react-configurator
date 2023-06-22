@@ -46,6 +46,8 @@ function Intro() {
 }
 
 function Customizer() {
+  const snap = useSnapshot(state)
+
   const colors = ['#ccc', '#edd02d', '#021164', '#af011d', '#015a32']
   const decals = ['television', 'hannya', 'kitsune', 'retro', 'writing']
 
@@ -57,31 +59,33 @@ function Customizer() {
             <div
               key={color}
               className="circle"
-              style={{ background: color }}></div>
+              style={{ background: color }}
+              onClick={() => (state.selectedColor = color)}
+              ></div>
           ))}
         </div>
-      </div>
 
-      <div className="decals">
-        <div className="decals--container">
-          {decals.map((decal) => (
-            <div key={decal} className="decal">
-              <img src={decal + '_thumb.png'} alt="brand" />
-            </div>
-          ))}
+        <div className="decals">
+          <div className="decals--container">
+            {decals.map((decal) => (
+              <div key={decal} className="decal">
+                <img src={decal + '_thumb.png'} alt="brand" />
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
 
-      <button className="share" style={{ background: 'black' }}>
-        DOWNLOAD
-        <AiFillCamera size="1.3em" />
-      </button>
-      <button className="exit" 
-      style={{ background: 'black' }}
-        onClick={() => (state.intro = true)}>
-        GO BACK
-        <AiOutlineArrowLeft size="1.3em" />
-      </button>
+        <button className="share" style={{ background: snap.selectedColor }}>
+          DOWNLOAD
+          <AiFillCamera size="1.3em" />
+        </button>
+        <button className="exit" 
+          style={{ background: snap.selectedColor }}
+          onClick={() => (state.intro = true)}>
+          GO BACK
+          <AiOutlineArrowLeft size="1.3em" />
+        </button>
+      </div>
     </section>
   )
 }
