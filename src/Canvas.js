@@ -7,7 +7,9 @@ import {
   Environment,
   Center,
   AccumulativeShadows,
-  RandomizedLight
+  RandomizedLight,
+  useTexture,
+  Decal
 } from '@react-three/drei'
 
 import { useSnapshot } from 'valtio'
@@ -33,6 +35,8 @@ export const App = ({ position = [0, 0, 2.5], fov = 25 }) => (
 
 function Shirt(props) {
   const snap = useSnapshot(state)
+
+  const texture = useTexture(`/${snap.selectedDecal}.png`)
   
   const { nodes, materials } = useGLTF('/shirt_baked_collapsed.glb')
   
@@ -47,7 +51,16 @@ function Shirt(props) {
       material={materials.lambert1}
       material-roughness={1}
       {...props}
-      dispose={null}></mesh>
+      dispose={null}>
+      <Decal 
+        position={[0, 0.04, 0.15]}
+        rotation={[0, 0, 0]}
+        scale={0.15}
+        opacity={0.7}
+        map={texture}
+        map-anisotropy={16}
+      />
+    </mesh>
   )
 }
 
