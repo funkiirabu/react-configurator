@@ -94,6 +94,14 @@ function Customizer() {
           DOWNLOAD
           <AiFillCamera size="1.3em" />
         </button>
+
+        <button
+          className="exit"
+          style={{ background: snap.selectedColor }}
+          onClick={() => (state.intro = true)}>
+          GO BACK
+          <AiOutlineArrowLeft size="1.3em" />
+        </button>
       </div>
     </section>
   )
