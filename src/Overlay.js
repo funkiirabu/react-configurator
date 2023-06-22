@@ -3,25 +3,42 @@ import { AiOutlineHighlight, AiOutlineShopping, AiFillCamera, AiOutlineArrowLeft
 
 import { useSnapshot } from 'valtio'
 import { state } from './store'
+import { motion, AnimatePresence } from 'framer-motion'
 
 export default function Overlay() {
   const snap = useSnapshot(state)
 
+  const transition = { type: 'spring', duration: 0.8 }
+
+  const config = {
+    initial: { x: -100, opacity: 0, transition: { ...transition, delay: 0.5 } },
+    animate: { x: 0, opacity: 1, transition: { ...transition, delay: 0 } },
+    exit: { x: -100, opacity: 0, transition: { ...transition, delay: 0 } }
+  }
+
   return (
     <div className="container">
-      <header>
+      <motion.header
+        initial={{ opacity: 0, y: -120 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ type: 'sping', duration: 1.8, delay: 1 }}>
         <GiTv size="3em" />
         <AiOutlineShopping size="3em" />
-      </header>
-
-      {snap.intro ? <Intro /> : <Customizer />}
+      </motion.header>
+      <AnimatePresence>
+        {snap.intro ? (
+          <Intro key="main" config={config} />
+        ) : (
+          <Customizer key="custom" config={config} />
+        )}
+      </AnimatePresence>
     </div>
   )
 }
 
-function Intro() {
+function Intro({ config }) {
   return (
-      <section key="main">
+      <motion.section {...config} key="main">
         <div className="section--container">
           <div>
             <h1>NOZ OM I.</h1>
@@ -29,9 +46,8 @@ function Intro() {
           <div className="support--content">
             <div>
               <p>
-                Visualize you're exclusive Nozomi shirt with our brand-new 3D
-                customization tool. <strong>Unleash your imagination </strong>
-                and define your own style.
+                Visualize your exclusive <strong>Nozomi</strong> shirt with our brand-new 3D
+                customization tool.
               </p>
               <button 
               style={{ background: 'black' }}
@@ -41,18 +57,18 @@ function Intro() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
   )
 }
 
-function Customizer() {
+function Customizer({ config }) {
   const snap = useSnapshot(state)
 
   const colors = ['#ccc', '#edd02d', '#021164', '#af011d', '#015a32']
   const decals = ['television', 'hannya', 'kitsune', 'retro', 'writing']
 
   return (
-    <section key="custom">
+    <motion.section key="custom" {...config}>
       <div className="customizer">
         <div className="color-options">
           {colors.map((color) => (
@@ -103,6 +119,6 @@ function Customizer() {
           <AiOutlineArrowLeft size="1.3em" />
         </button>
       </div>
-    </section>
+    </motion.section>
   )
 }
