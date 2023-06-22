@@ -3,10 +3,18 @@ import { AiOutlineHighlight, AiOutlineShopping, AiFillCamera, AiOutlineArrowLeft
 
 import { useSnapshot } from 'valtio'
 import { state } from './store'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
 export default function Overlay() {
   const snap = useSnapshot(state)
+
+  const transition = { type: 'spring', duration: 0.8 }
+
+  const config = {
+    initial: { x: -100, opacity: 0, transition: { ...transition, delay: 0.5 } },
+    animate: { x: 0, opacity: 1, transition: { ...transition, delay: 0 } },
+    exit: { x: -100, opacity: 0, transition: { ...transition, delay: 0 } }
+  }
 
   return (
     <div className="container">
@@ -17,15 +25,20 @@ export default function Overlay() {
         <GiTv size="3em" />
         <AiOutlineShopping size="3em" />
       </motion.header>
-
-      {snap.intro ? <Intro /> : <Customizer />}
+      <AnimatePresence>
+        {snap.intro ? (
+          <Intro key="main" config={config} />
+        ) : (
+          <Customizer key="custom" config={config} />
+        )}
+      </AnimatePresence>
     </div>
   )
 }
 
-function Intro() {
+function Intro({ config }) {
   return (
-      <section key="main">
+      <motion.section {...config} key="main">
         <div className="section--container">
           <div>
             <h1>NOZ OM I.</h1>
@@ -45,7 +58,7 @@ function Intro() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
   )
 }
 
