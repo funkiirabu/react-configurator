@@ -1,8 +1,8 @@
 import { GiTv } from 'react-icons/gi'
-import { AiOutlineHighlight, AiOutlineShopping } from 'react-icons/ai'
+import { AiOutlineHighlight, AiOutlineShopping, AiFillCamera, AiOutlineArrowLeft } from 'react-icons/ai'
 
 export default function Overlay() {
-  return <Intro />
+  return <Customizer />
 }
 
 function Intro() {
@@ -39,8 +39,9 @@ function Intro() {
 }
 
 function Customizer() {
-  const colors = ['#ccc', '#EFBD4E', '#726DE8', '#EF674E', '#353934']
-  
+  const colors = ['#ccc', '#edd02d', '#021164', '#af011d', '#015a32']
+  const decals = ['television', 'hannya', 'kitsune', 'retro', 'writing']
+
   return (
     <section key="custom">
       <div className="customizer">
@@ -53,6 +54,25 @@ function Customizer() {
           ))}
         </div>
       </div>
+
+      <div className="decals">
+        <div className="decals--container">
+          {decals.map((decal) => (
+            <div key={decal} className="decal">
+              <img src={decal + '_thumb.png'} alt="brand" />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <button className="share" style={{ background: 'black' }}>
+        DOWNLOAD
+        <AiFillCamera size="1.3em" />
+      </button>
+      <button className="exit" style={{ background: 'black' }}>
+        GO BACK
+        <AiOutlineArrowLeft size="1.3em" />
+      </button>
     </section>
   )
 }
