@@ -10,6 +10,9 @@ import {
   RandomizedLight
 } from '@react-three/drei'
 
+import { useSnapshot } from 'valtio'
+import { state } from './store'
+
 export const App = ({ position = [0, 0, 2.5], fov = 25 }) => (
   <Canvas
     shadows
@@ -29,7 +32,14 @@ export const App = ({ position = [0, 0, 2.5], fov = 25 }) => (
 )
 
 function Shirt(props) {
+  const snap = useSnapshot(state)
+  
   const { nodes, materials } = useGLTF('/shirt_baked_collapsed.glb')
+  
+  useFrame((state, delta) => {
+    easing.dampC(materials.lambert1.color, snap.selectedColor, 0.25, delta)
+  })
+  
   return (
     <mesh
       castShadow
@@ -43,6 +53,11 @@ function Shirt(props) {
 
 function Backdrop() {
   const shadows = useRef()
+
+  useFrame((state, delta) =>
+    easing.dampC(shadows.current.getMesh().material.color,
+    state.selectedColor, 0.25, delta)
+  )
 
   return (
     <AccumulativeShadows
