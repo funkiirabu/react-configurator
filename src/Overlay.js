@@ -1,4 +1,4 @@
-import { GiTv } from 'react-icons/gi'
+import { Logo } from '@pmndrs/branding'
 import { AiOutlineHighlight, AiOutlineShopping, AiFillCamera, AiOutlineArrowLeft } from 'react-icons/ai'
 
 import { useSnapshot } from 'valtio'
@@ -22,7 +22,7 @@ export default function Overlay() {
         initial={{ opacity: 0, y: -120 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ type: 'sping', duration: 1.8, delay: 1 }}>
-        <GiTv size="3em" />
+        <Logo width="40" height="40" />
         <AiOutlineShopping size="3em" />
       </motion.header>
       <AnimatePresence>
@@ -41,12 +41,12 @@ function Intro({ config }) {
       <motion.section {...config} key="main">
         <div className="section--container">
           <div>
-            <h1>NOZ OM I.</h1>
+            <h1>LET'S DO IT.</h1>
           </div>
           <div className="support--content">
             <div>
               <p>
-                Visualize your exclusive <strong>Nozomi</strong> shirt with our brand-new 3D
+                Visualize your exclusive <strong>Shirt</strong> with our brand-new 3D
                 customization tool.
               </p>
               <button 
