@@ -1,15 +1,22 @@
 # React Configurator
 
-This project was built using:
+## Summary
 - React Javascript framework
 - ThreeJS a JavaScript 3D Library
 - React Three Fiber a React renderer for three.js
 - Framer motion a animation library for React
 
-## Available Scripts
+## Setup
+Download [Node.js](https://nodejs.ord/en/download/).
+Run the following commands:
 
-### `npm start`
+``` bash
+# Install dependencies (only the first time) 
+npm install
 
-### `npm test`
+# Run the local server at localhost:3000
+npm run
 
-### `npm run build`
+# Build for production
+npm run build
+```
